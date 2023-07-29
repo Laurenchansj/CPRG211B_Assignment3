@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,12 +46,61 @@ namespace Assignment3.Utility
 		}
 
 		/// <summary>
+		/// Adds a new element at a specific position.
+		/// </summary>
+		/// <param name="value">Value that element is to contain.</param>
+		/// <param name="index">Index to add new element at.</param>
+		/// <exception cref="IndexOutOfRangeException">Thrown if index is negative or past the size of the list.</exception>
+		public void Add(User value, int index)
+		{
+			
+			int returnSize = Count();
+			
+
+			if(index < 0 || index > returnSize - 1)
+			{
+				new IndexOutOfRangeException("Index is negative or larger than list size.");
+			
+			}else if( index == 0)
+			{
+				AddFirst(value);
+			}
+			else
+			{
+				Node<User> temp1 = FindNode(index - 1);
+
+				Node<User> temp2 = temp1.Next; //temp1 pointer target temp2 or set index node as temp2
+				Node<User> insertedNode = new Node<User>(value); // make new node with value
+
+				temp1.Next = insertedNode; //pointing temp1.next to inserted node
+				insertedNode.Next = temp2; //pointing inseted node to temp2
+
+				Size++;
+
+				if(insertedNode.Next == null)
+				{
+					Tail = insertedNode;
+				}
+			}
+
+		}
+
+		/// <summary>
 		/// Prepends (adds to beginning) value to the list.
 		/// </summary>
 		/// <param name="value">Value to store inside element.</param>
 		public void AddFirst(User value)
 		{
-			throw new NotImplementedException();
+			Node<User> newHead = new Node<User>(value);
+			newHead.Next = Head; //move pointer(next) to previous head
+			Head = newHead; //set newHead as the Head
+			
+			if (Head.Next == null)
+			{
+				Tail = Head;
+			}
+			
+			Size++;
 		}
 
 		/// <summary>
@@ -60,7 +109,18 @@ namespace Assignment3.Utility
 		/// <param name="value">Value to append.</param>
 		public void AddLast(User value)
 		{
-			throw new NotImplementedException();
+			Node<User> newLastNode = new Node<User>(value);
+
+			if(Size == 0)
+			{
+				AddFirst(value);
+			}
+			else
+			{
+				Tail.Next = newLastNode;
+				Tail = newLastNode;
+				Size++;
+			}
 
 		}
 
@@ -69,7 +129,19 @@ namespace Assignment3.Utility
 		/// </summary>
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			Node<User> currentNode = Head;
+
+			while(currentNode != null)
+			{
+				Node<User> nextNode = currentNode.Next;
+				currentNode.Next = null;
+				currentNode = nextNode;
+			}
+
+			Head = null;
+			Tail = null;
+
+			Size = 0;
 		}
 
 		/// <summary>
@@ -79,7 +151,18 @@ namespace Assignment3.Utility
 		/// <returns>True if element exists with value.</returns>
 		public bool Contains(User value)
 		{
-			throw new NotImplementedException();
+			Node<User> currentNode = Head;
+
+			while(currentNode != null)
+			{
+				if (currentNode.Data.Equals(value))
+				{
+					return true;
+				}
+				currentNode = currentNode.Next;
+			}
+
+			return false;
 		}
 
 		/// <summary>
@@ -251,3 +334,4 @@ namespace Assignment3.Utility
 	}
 		
 }
+

@@ -27,6 +27,52 @@ namespace Assignment3.Tests
 		}
 
 		/// <summary>
+		/// Test for the AddFirst method of the linked list.
+		/// It verifies that the AddFirst method correctly adds a new User object to the beginning of the list.
+		/// </summary>
+		[Test]
+		public void TestAddFirst()
+		{
+			// add a new user to the beginning.
+			users.AddFirst(new User(0, "Jiyeon Heo", "jiyeon.heo@gmail.com", "123456"));
+			// get the name of the first user in the list
+			string expectedName = users.GetValue(0).Name;
+			// check that the name of the first user matches the expected name
+			Assert.AreEqual("Jiyeon Heo", expectedName);
+
+		}
+
+		/// <summary>
+		/// Test for the AddLast method of the linked list.
+		/// It verifies that the AddLast method correctly adds a new User object to the end of the list.
+		/// </summary>
+		[Test]
+		public void TestAddLast()
+		{
+			// add a new user to the end.
+			users.AddLast(new User(30, "Tze-chi Chan", "tze-chi@yahoo.com", "963852"));
+			// get the name of the last user in the list
+			string expectedName = users.GetValue(4).Name;
+			// check that the name of the last user matches the expected name
+			Assert.That(expectedName, Is.EqualTo("Tze-chi Chan"));
+		}
+
+		/// <summary>
+		/// Test for the Add method.
+		/// It verifies that the Add method correctly add a new User object to the specified index in the list.
+		/// </summary>
+		[Test]
+		public void TestAdd()
+		{
+			// add a new user to the index 2
+			users.Add(new User(10, "Sarah Tenebro", "sarah@sait.com", "98765400"), 2);
+			// get the name of the index 2 in the list
+			string expectedName = users.GetValue(2).Name;
+			// check that the name of the index 2 matches the expected name
+			Assert.That(expectedName, Is.EqualTo("Sarah Tenebro"));
+		}
+
+		/// <summary>
 		/// Test for the removeFirst method
 		/// </summary>
 		[Test]

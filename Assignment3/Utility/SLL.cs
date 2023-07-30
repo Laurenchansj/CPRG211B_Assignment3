@@ -41,18 +41,6 @@ namespace Assignment3.Utility
 		/// <exception cref="IndexOutOfRangeException">Thrown if index is negative or past the size of the list.</exception>
 		public void Add(User value, int index)
 		{
-			throw new NotImplementedException();
-
-		}
-
-		/// <summary>
-		/// Adds a new element at a specific position.
-		/// </summary>
-		/// <param name="value">Value that element is to contain.</param>
-		/// <param name="index">Index to add new element at.</param>
-		/// <exception cref="IndexOutOfRangeException">Thrown if index is negative or past the size of the list.</exception>
-		public void Add(User value, int index)
-		{
 			
 			int returnSize = Count();
 			

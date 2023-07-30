@@ -14,7 +14,7 @@ namespace Assignment3.Tests
 	public class SLLTesting
 	{
 		private ILinkedListADT users;
-		private SLL userSll; //Used in ReversedLinkedListTest method
+		private SLL userSLL; //Used in ReversedLinkedListTest method
 		
 		[SetUp]
 		public void Setup()

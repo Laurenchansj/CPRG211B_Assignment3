@@ -171,7 +171,11 @@ namespace Assignment3.Utility
 		/// <returns>Size of list (0 meaning empty)</returns>
 		public int Count()
 		{
-			throw new NotImplementedException ();
+  			if(Head == null)
+     			{
+				return 0;
+    			}
+			return Size;
 		}
 
 		/// <summary>
@@ -182,7 +186,20 @@ namespace Assignment3.Utility
 		/// <exception cref="IndexOutOfRangeException">Thrown if index is negative or larger than size - 1 of list.</exception>
 		public User GetValue(int index)
 		{
-			throw new NotImplementedException();
+  			Node<User> current = Head;
+     
+  			if(Head == null || index >= Size || index < 0)
+     			{
+				throw new IndexOutOfRangeException("The list is empty or the index is out of range or the index is less than 0.");
+   			}
+      			else
+	 		{
+    				for(int i = 0; i < index; i++)
+				{
+    					current = current.Next;
+				}
+    				return current.Data;
+			}
 		}
 
 		/// <summary>
@@ -207,8 +224,21 @@ namespace Assignment3.Utility
 		/// <returns>First of index of node with matching value or -1 if not found.</returns>
 		public int IndexOf(User value)
 		{
-			throw new NotImplementedException();
-
+  			Node<User> current = Head;
+     			int index = 0;
+	
+  			while(current != null)
+    			{
+				if(current.Data == value)
+     				{
+	  				return index;
+				}
+     				else
+	  			{
+       					index++;
+	     			}
+	  		}
+     			return -1;
 		}
 
 		/// <summary>
@@ -217,7 +247,11 @@ namespace Assignment3.Utility
 		/// <returns>True if it is empty.</returns>
 		public bool IsEmpty()
 		{
-			throw new NotImplementedException();
+			if(Head == null)
+   			{
+      				return true;
+	  		}
+     			return false;
 		}
 
 		/// <summary>
@@ -300,7 +334,20 @@ namespace Assignment3.Utility
 		/// <exception cref="IndexOutOfRangeException">Thrown if index is negative or larger than size - 1 of list.</exception>
 		public void Replace(User value, int index)
 		{
-			throw new NotImplementedException();
+			if(Head == null || index >= Size || index < 0)
+   			{
+      				throw new IndexOutOfRangeException("The list is empty, or the index is out of range, or the index is less than zero.");
+	  		}
+     			else
+			{
+   				Node<User> current = Head;
+
+	   			for(int i = 0; i < index; i++)
+       				{	
+	   				current = current.Next;
+				}
+    				current.Data = value;
+			}
 		}
 
 		/// <summary>
@@ -352,7 +399,30 @@ namespace Assignment3.Utility
             		return newSll;
 		}
 
-		
+		/// <summary>
+  		/// Reverses the order of the nodes in the list.
+    		/// </summary>
+      		public Node<User> ReverseLinkedList()
+		{
+			if(Head == null)
+   			{
+      				return null;
+	  		}
+
+			Node<User> currentNode = Head;
+   			Node<User> previousNode = null;
+      			Node<User> tempNext;
+
+    			while(currentNode != null)
+       			{
+	  			tempNext = currentNode.Next;
+      				currentNode.Next = previousNode;
+	  			previousNode = currentNode;
+      				currentNode = tempNext;
+			}
+   			return previousNode;
+    		}
+      
 		/// <summary>
 		/// Represents an exception that is thrown when an element cannot be removed from the list.
 		/// </summary>

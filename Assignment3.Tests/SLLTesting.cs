@@ -14,6 +14,7 @@ namespace Assignment3.Tests
 	public class SLLTesting
 	{
 		private ILinkedListADT users;
+		private SLL userSll; //Used in ReversedLinkedListTest method
 		
 		[SetUp]
 		public void Setup()
@@ -198,5 +199,52 @@ namespace Assignment3.Tests
             		Assert.That(expectedID3, Is.EqualTo(actualID3));
 		}
 
+		[Test]
+		public void IsEmptyTest()
+		{
+			Assert.IsFalse(users.IsEmpty());
+		}
+
+		[Test]
+		public void ReplaceTest()
+		{
+			//Arrange and Act
+			users.Replace(new User(9, "Eugene Krabs", "goldpile@hotmail.com", "moneymoney"), 2);
+			string expected = "Eugene Krabs";
+			string outputted = users.GetValue(2).Name;
+
+			//Assert
+			Assert.AreEqual(expected, outputted);
+		}
+
+		[Test]
+		public void ReverseLinkedListTest()
+		{
+			//Arrange and Act
+			userSLL = new SLL();
+			userSLL.AddLast(new User(1, "Joe Blow", "jblow@gmail.com", "password"));
+            		userSLL.AddLast(new User(2, "Joe Schmoe", "joe.schmoe@outlook.com", "abcdef"));
+            		userSLL.AddLast(new User(3, "Colonel Sanders", "chickenlover1890@gmail.com", "kfc5555"));
+            		userSLL.AddLast(new User(4, "Ronald McDonald", "burgers4life63@outlook.com", "mcdonalds999"));
+
+			Node<User> reversedList = userSLL.ReversedLinkedList();
+			userSLL.Head = reversedList;
+
+			int expected1 = 4;
+			int expected2 = 3;
+			int expected3 = 2;
+			int expected4 = 1;
+
+			int outputted1 = userSLL.GetValue(0).Id;
+            		int outputted2 = userSLL.GetValue(1).Id;
+            		int outputted3 = userSLL.GetValue(2).Id;
+            		int outputted4 = userSLL.GetValue(3).Id;
+
+			//Assert
+			Assert.AreEqual(expected1, outputted1);
+           		Assert.AreEqual(expected2, outputted2);
+            		Assert.AreEqual(expected3, outputted3);
+            		Assert.AreEqual(expected4, outputted4);
+		}
 	}
 }

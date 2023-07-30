@@ -321,6 +321,37 @@ namespace Assignment3.Utility
 			return array;
 		}
 
+  		/// <summary>
+		/// Divide the linked list into two separate linked lists based on a specific index position.
+		/// </summary>
+		/// <returns>A new linked list which starts from the index position, and the original linked list after dividing.</returns>
+  		public SLL Divided(int index)
+		{
+			SLL newSll = new SLL(); // create a new SLL
+			Node<User> runner = Head; // point to the original SLL's Head
+			if ((IsEmpty()) || (index < 0 || index >= Count())) // when couldn't find the index
+            		{
+                		throw new IndexOutOfRangeException("Index is negative or larger than list size.");
+           	 	}
+			else
+			{
+				for (int i = index; i < Count(); i++)
+				{
+					newSll.AddLast(GetValue(i)); // add each item at the end of the new SLL
+                		}
+			}
+			newSll.Size = Size - index;
+
+			for (int i = 0; i < index; i++) // get the last item in original SLL after dividing
+			{
+				runner = runner.Next;
+            		}
+            		Tail = runner; // the last item will be the new tail for the original SLL
+            		Size = index;
+
+            		return newSll;
+		}
+
 		
 		/// <summary>
 		/// Represents an exception that is thrown when an element cannot be removed from the list.

@@ -141,6 +141,62 @@ namespace Assignment3.Tests
 
 		}
 
-		
+		[Test]
+		public void TestDivided()
+		{
+			User user1 = new User(1, "Joe Blow", "jblow@gmail.com", "password");
+			User user2 = new User(2, "Joe Schmoe", "joe.schmoe@outlook.com", "abcdef");
+			User user3 = new User(3, "Colonel Sanders", "chickenlover1890@gmail.com", "kfc5555");
+			User user4 = new User(4, "Ronald McDonald", "burgers4life63@outlook.com", "mcdonalds999");
+            		SLL users1 = new SLL();
+			users1.AddLast(user1);
+			users1.AddLast(user2);
+			users1.AddLast(user3);
+			users1.AddLast(user4);
+            		SLL users2 = new SLL();
+            		users2.AddLast(user1);
+            		users2.AddLast(user2);
+            		users2.AddLast(user3);
+            		users2.AddLast(user4);
+            		SLL users3 = new SLL();
+            		users3.AddLast(user1);
+            		users3.AddLast(user2);
+            		users3.AddLast(user3);
+            		users3.AddLast(user4);
+            		//Test 1: divide from the middle
+            		SLL newUsers1 = new SLL();
+			newUsers1 = users1.Divided(2); // newusers starts from index 1 (position 2)
+
+			int actualID1 = newUsers1.GetValue(1).Id;
+			int expectedID1 = 4;
+
+			//Test 2: divide from the beginning
+			SLL newUsers2 = new SLL();
+			newUsers2 = users2.Divided(1); // newUsers starts from index 0 (position 1)
+
+			int actualID2 = newUsers2.GetValue(0).Id;
+			int expectedID2 = 2;
+
+			//Test 3: divide at the end
+			SLL newUsers3 = new SLL();
+			newUsers3 = users3.Divided(3); // newUsers starts from index 3 (position 4)
+			
+			int actualID3 = users3.GetValue(2).Id;
+			int expectedID3 = 3;
+
+            		// Testing 1
+            		Assert.That(users1.Size, Is.EqualTo(2));// confirm the original SLL size
+            		Assert.That(newUsers1.Size, Is.EqualTo(2));// confirm the new SLL size
+            		Assert.That(expectedID1, Is.EqualTo(actualID1));
+            		// Testing 2
+            		Assert.That(users2.Size, Is.EqualTo(1));
+            		Assert.That(newUsers2.Size, Is.EqualTo(3));
+            		Assert.That(expectedID2, Is.EqualTo(actualID2));
+            		// Testing 3
+            		Assert.That(users3.Size, Is.EqualTo(3));
+            		Assert.That(newUsers3.Size, Is.EqualTo(1));
+            		Assert.That(expectedID3, Is.EqualTo(actualID3));
+		}
+
 	}
 }

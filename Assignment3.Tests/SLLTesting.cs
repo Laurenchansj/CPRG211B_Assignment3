@@ -227,7 +227,7 @@ namespace Assignment3.Tests
             		userSLL.AddLast(new User(3, "Colonel Sanders", "chickenlover1890@gmail.com", "kfc5555"));
             		userSLL.AddLast(new User(4, "Ronald McDonald", "burgers4life63@outlook.com", "mcdonalds999"));
 
-			Node<User> reversedList = userSLL.ReversedLinkedList();
+			Node<User> reversedList = userSLL.ReverseLinkedList();
 			userSLL.Head = reversedList;
 
 			int expected1 = 4;

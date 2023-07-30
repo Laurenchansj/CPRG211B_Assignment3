@@ -198,5 +198,17 @@ namespace Assignment3.Tests
             		Assert.That(expectedID3, Is.EqualTo(actualID3));
 		}
 
+		/// <summary>
+        	/// Test for the Getvalue method
+        	/// </summary>
+        	[Test]
+        	public void TestGetValue()
+        	{
+			// Get the item at the specific index
+            		int expectedIndex = users.GetValue(2).Id;
+			// check the return at the specific index matches to expected calue 
+            		Assert.That(expectedIndex, Is.EqualTo(3));
+        	}
+
 	}
 }
